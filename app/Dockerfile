@@ -18,6 +18,13 @@ RUN npm ci --omit=dev || npm install --omit=dev
 
 COPY app.js index.html ./
 
+# Remove package managers not needed at runtime.
+USER root
+RUN rm -rf /usr/local/lib/node_modules/npm \
+           /usr/local/lib/node_modules/corepack \
+           /opt/yarn-v1.22.22
+
+
 # FIX 4: drop root. The node images already provide an unprivileged "node" user.
 USER node
 
