@@ -21,7 +21,7 @@ jobs:
       - name: Build remediated image
         run: |
           docker build --pull --no-cache -t devsecops-lab:scan ./app
-          
+
       - name: Scan image with Trivy
         uses: aquasecurity/trivy-action@master
         with:
@@ -30,7 +30,7 @@ jobs:
           severity: HIGH,CRITICAL
           exit-code: '1'
 
-       - name: Verify secret masking
+      - name: Verify secret masking
         env:
           DEMO_SECRET: ${{ secrets.DEMO_SECRET }}
         run: |
