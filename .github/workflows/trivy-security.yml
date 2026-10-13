@@ -29,3 +29,10 @@ jobs:
           format: table
           severity: HIGH,CRITICAL
           exit-code: '1'
+
+       - name: Verify secret masking
+        env:
+          DEMO_SECRET: ${{ secrets.DEMO_SECRET }}
+        run: |
+          echo "Secret masking test:"
+          echo "DEMO_SECRET=$DEMO_SECRET"
